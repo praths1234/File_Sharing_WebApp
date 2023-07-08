@@ -12,6 +12,9 @@ const PASSWORD = process.env.DB_PASSWORD ;
 
 const URL= process.env.MONGODB_URI || `mongodb://${USERNAME}:${PASSWORD}@ac-h3ko7li-shard-00-00.zga05z5.mongodb.net:27017,ac-h3ko7li-shard-00-01.zga05z5.mongodb.net:27017,ac-h3ko7li-shard-00-02.zga05z5.mongodb.net:27017/?ssl=true&replicaSet=atlas-h4mve0-shard-0&authSource=admin&retryWrites=true&w=majority`
 
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'))
+}
 
 DBConnection(URL);
 app.listen(PORT , () => console.log(`Server is running on Port ${PORT}`));
